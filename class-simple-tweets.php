@@ -257,7 +257,7 @@ if ( ! class_exists( 'SimpleTweets' ) ) :
         }
 
         //  Display Cached HTML
-        public function display_cached_content() {
+        public static function display_cached_content() {
             
             global $post, $transient_label;
             $transient_label = __CLASS__ . "_" . __FUNCTION__; // Transient label will be 'SimpleTweets_display_cached_content'
