@@ -301,40 +301,27 @@ if ( ! class_exists( 'SimpleTweets' ) ) :
                     // Gather output
                     ob_start(); ?>
 
-                    <ul class="simple-twitter-feed">
+                        <?php foreach ( $multi_array as $key => $value ) : ?>
 
-                        <i class="fa-twitter"></i>
+                            <li class="active-slide">
+                                <div class="tweet-text">
+                                    <?php echo linkify_twitter_text($value['text']); ?>
+                                </div>
+                                <div class="twitter-intents">
+                                    <a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $value['id']; ?>" target="_blank">
+                                        <i class="fa-reply"></i>
+                                    </a>
+                                    <a class="retweet" href="https://twitter.com/intent/retweet?tweet_id=<?php echo $value['id']; ?>" target="_blank">
+                                        <i class="fa-retweet"></i>
+                                    </a>
+                                    <a class="favorite" href="https://twitter.com/intent/favorite?tweet_id=<?php echo $value['id']; ?>" target="_blank">
+                                        <i class="fa-star"></i>
+                                    </a>
+                                    <a class="timestamp" href="https://twitter.com/@<?php echo $settings['username']; ?>/status/<?php echo $value['id']; ?>" target="_blank"><?php echo human_time_diff( strtotime($value['created_at']), current_time('timestamp') ) . ' ago'; ?></a>
+                                </div>
+                            </li>
 
-                        <ul data-slider="slide" class="slider">
-
-                            <?php foreach ( $multi_array as $key => $value ) : ?>
-                                <li class="active-slide">
-                                    <div class="tweet-text">
-                                        <?php echo linkify_twitter_text($value['text']); ?>
-                                    </div>
-                                    <div class="twitter-intents">
-                                        <a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $value['id']; ?>" target="_blank">
-                                            <i class="fa-reply"></i>
-                                        </a>
-                                        <a class="retweet" href="https://twitter.com/intent/retweet?tweet_id=<?php echo $value['id']; ?>" target="_blank">
-                                            <i class="fa-retweet"></i>
-                                        </a>
-                                        <a class="favorite" href="https://twitter.com/intent/favorite?tweet_id=<?php echo $value['id']; ?>" target="_blank">
-                                            <i class="fa-star"></i>
-                                        </a>
-                                        <a class="timestamp" href="https://twitter.com/@<?php echo $settings['username']; ?>/status/<?php echo $value['id']; ?>" target="_blank"><?php echo human_time_diff( strtotime($value['created_at']), current_time('timestamp') ) . ' ago'; ?></a>
-                                    </div>
-                                </li>
-
-                            <?php endforeach; ?>
-
-                        </ul>
-                        <div class='controls'>
-                            <a href='#' class='control-links' rel='prev'><i class='fa-angle-left'></i></a>
-                            <a href='#' class='control-links' rel='next'><i class='fa-angle-right'></i></a>
-                        </div>
-                    
-                    </ul>
+                        <?php endforeach; ?>
 
                     <?php 
                     // Save output
@@ -358,6 +345,38 @@ if ( ! class_exists( 'SimpleTweets' ) ) :
             global $transient_label;
             delete_transient( $transient_label );
         }
+
+    }
+
+    if ( !function_exists('simpletweets_shortcode') ) {
+
+        function simpletweets_shortcode( $atts ) {
+            extract(shortcode_atts(array(
+                'before'    => '',
+                'after'     => "<div class='controls'>
+                                    <a href='#' class='control-links' rel='prev'><i class='fa-angle-left'></i></a>
+                                    <a href='#' class='control-links' rel='next'><i class='fa-angle-right'></i></a>
+                                </div>",
+                'wrapper'   => 'ul',
+                'class'     => 'slider',
+                'attr'      => 'data-slider="slide"'
+            ), $atts));
+            
+            $output = '';
+
+            $output .= $before;
+
+            $output .= '<'.$wrapper.' class="'.$class.'" '.$attr.'>';
+
+            $output .= SimpleTweets::display_cached_content();
+
+            $output .= '</'.$wrapper.'>';
+
+            $output .= $after;
+
+            return $output;
+        }
+        add_shortcode('tweets', 'simpletweets_shortcode');
 
     }
 
