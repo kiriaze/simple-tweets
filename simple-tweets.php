@@ -70,4 +70,5 @@ function simple_tweets_plugin_init(){
 
     //  Load class
     require_once( SIMPLE_TWEETS_PLUGIN_PATH . 'class-simple-tweets.php' );
+    
 }
