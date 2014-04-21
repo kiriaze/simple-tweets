@@ -1,22 +1,17 @@
 <?php
-/**
-    *
-    * @package   Simple Tweets
-    * @author    Constantine Kiriaze, hello@kiriaze.com
-    * @license   GPL-2.0+
-    * @link      http://getsimple.io
-    * @copyright 2013 Constantine Kiriaze
-    *
-	* Plugin Name:     Simple Tweets
-	* Plugin URI:      http://getsimple.io
-	* Description:     Simple Tweets
-	* Version:         1.0
-	* Author:          Constantine Kiriaze (@kiriaze)
-	* Author URI:      http://getsimple.io/about
-    * Text Domain:     'simple' 
-    * Copyright:       (c) 2013, Constantine Kiriaze
-    * License:         GNU General Public License v2 or later
-    * License URI:     http://www.gnu.org/licenses/gpl-2.0.html
+/*
+Plugin Name:     Simple Tweets
+Plugin URI:      https://github.com/kiriaze/simple-tweets
+Description:     Simple Tweets supports post formats.
+Version:         1.0.6
+Author:          Constantine Kiriaze (@kiriaze)
+Author URI:      http://getsimple.io/about
+License:         GNU General Public License v2 or later
+License URI:     http://www.gnu.org/licenses/gpl-2.0.html
+Copyright:       (c) 2013, Constantine Kiriaze
+Text Domain:     simple
+GitHub Plugin URI: https://github.com/kiriaze/simple-tweets
+GitHub Branch:     master
 */
 
 /*
