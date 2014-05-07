@@ -63,6 +63,9 @@ function simple_tweets_plugin_init(){
     define( 'count', $count);
     define( 'cache', $cache * MINUTE_IN_SECONDS );
 
+    //  Load options
+    require_once( SIMPLE_TWEETS_PLUGIN_PATH . 'simple-tweets-options.php' );
+
     //  Load class
     require_once( SIMPLE_TWEETS_PLUGIN_PATH . 'class-simple-tweets.php' );
     
