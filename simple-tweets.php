@@ -3,7 +3,7 @@
 Plugin Name:     Simple Tweets
 Plugin URI:      https://github.com/kiriaze/simple-tweets
 Description:     Simple Tweets supports post formats.
-Version:         1.0.6
+Version:         1.0.1
 Author:          Constantine Kiriaze (@kiriaze)
 Author URI:      http://getsimple.io/about
 License:         GNU General Public License v2 or later
@@ -18,7 +18,7 @@ GitHub Branch:     master
     Copyright (C) 2013  Constantine Kiriaze (hello@kiriaze.com)
 
     This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
+    it under the terms of the GNU General Public License, version 2, as
     published by the Free Software Foundation.
 
     This program is distributed in the hope that it will be useful,
@@ -68,5 +68,5 @@ function simple_tweets_plugin_init(){
 
     //  Load class
     require_once( SIMPLE_TWEETS_PLUGIN_PATH . 'class-simple-tweets.php' );
-    
+
 }
