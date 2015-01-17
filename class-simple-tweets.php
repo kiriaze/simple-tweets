@@ -419,11 +419,14 @@ if ( ! class_exists( 'SimpleTweets' ) ) :
 
     add_action( 'init', 'settingsUpdated' );
     function settingsUpdated() {
-        if( !is_admin() ) return;
-        if ( $_GET['settings-updated'] ) {
+        
+        if ( !is_admin() ) return;
+        
+        if ( isset( $_GET['settings-updated'] ) ) {
             global $transient_label;
             delete_transient($transient_label);
         }
+
     }
 
 endif;
