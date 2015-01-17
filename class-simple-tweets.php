@@ -46,8 +46,6 @@ if ( ! class_exists( 'SimpleTweets' ) ) :
             add_action('post_updated', array( &$this, 'delete_transient') );
             add_action('post_updated', array( &$this, 'display_cached_content') );
 
-
-
             if ( !in_array( 'curl', get_loaded_extensions() ) ) {
                 throw new Exception('You need to install cURL, see: http://curl.haxx.se/docs/install.html');
             }
@@ -60,10 +58,10 @@ if ( ! class_exists( 'SimpleTweets' ) ) :
                 throw new Exception('Make sure you are passing in the correct parameters');
             }
 
-            $this->oauth_access_token = $settings['oauth_access_token'];
+            $this->oauth_access_token        = $settings['oauth_access_token'];
             $this->oauth_access_token_secret = $settings['oauth_access_token_secret'];
-            $this->consumer_key = $settings['consumer_key'];
-            $this->consumer_secret = $settings['consumer_secret'];
+            $this->consumer_key              = $settings['consumer_key'];
+            $this->consumer_secret           = $settings['consumer_secret'];
         }
         
         /**
@@ -411,6 +409,21 @@ if ( ! class_exists( 'SimpleTweets' ) ) :
         ), $tweet );
         
         return $tweet;
+    }
+
+    // Load scripts
+    add_action( 'admin_enqueue_scripts', 'load_scripts' );
+    function load_scripts() {
+        wp_enqueue_script( 'admin-simple-tweets-js', plugins_url( '/admin.js', __FILE__ ) );
+    }
+
+    add_action( 'init', 'settingsUpdated' );
+    function settingsUpdated() {
+        if( !is_admin() ) return;
+        if ( $_GET['settings-updated'] ) {
+            global $transient_label;
+            delete_transient($transient_label);
+        }
     }
 
 endif;
