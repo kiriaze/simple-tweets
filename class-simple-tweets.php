@@ -307,13 +307,13 @@ if ( ! class_exists( 'SimpleTweets' ) ) :
                                 </div>
                                 <div class="twitter-intents">
                                     <a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $value['id']; ?>" target="_blank">
-                                        <i class="fa-reply"></i>
+                                        <i class="fa fa-reply"></i>
                                     </a>
                                     <a class="retweet" href="https://twitter.com/intent/retweet?tweet_id=<?php echo $value['id']; ?>" target="_blank">
-                                        <i class="fa-retweet"></i>
+                                        <i class="fa fa-retweet"></i>
                                     </a>
                                     <a class="favorite" href="https://twitter.com/intent/favorite?tweet_id=<?php echo $value['id']; ?>" target="_blank">
-                                        <i class="fa-star"></i>
+                                        <i class="fa fa-star"></i>
                                     </a>
                                     <a class="timestamp" href="https://twitter.com/@<?php echo $settings['username']; ?>/status/<?php echo $value['id']; ?>" target="_blank"><?php echo human_time_diff( strtotime($value['created_at']), current_time('timestamp') ) . ' ago'; ?></a>
                                 </div>
