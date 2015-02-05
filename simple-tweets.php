@@ -40,16 +40,14 @@ define( 'SIMPLE_TWEETS_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 define( 'SIMPLE_TWEETS_PLUGIN_PATH', plugin_dir_path(__FILE__) );
 define( 'SIMPLE_TWEETS_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
-if ( function_exists( 'of_get_option' ) ) {
-    //  Load options
-    require_once( plugin_dir_path( __FILE__ ) . 'simple-tweets-options.php' );
-}
-
 //  Wrapped in after_setup_theme to utilize options
 add_action('after_setup_theme', 'simple_tweets_plugin_init', 12);
 function simple_tweets_plugin_init() {
 
     if ( function_exists( 'of_get_option' ) ) {
+
+        //  Load options
+        require_once( plugin_dir_path( __FILE__ ) . 'simple-tweets-options.php' );
 
         // Check theme options for values below
         $oauth_access_token        = of_get_option( 'social_twitter_oauth_token' ) ? of_get_option( 'social_twitter_oauth_token' ) : "16978818-X6wjOuO6WdsOtd4NPkuiG0AXtJ0FC8AGBBSOPB70a";
