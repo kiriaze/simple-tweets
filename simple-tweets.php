@@ -47,16 +47,32 @@ if ( function_exists( 'of_get_option' ) ) {
 
 //  Wrapped in after_setup_theme to utilize options
 add_action('after_setup_theme', 'simple_tweets_plugin_init', 12);
-function simple_tweets_plugin_init(){
+function simple_tweets_plugin_init() {
 
-    // Check theme options for values below
-    $oauth_access_token        = of_get_option( 'social_twitter_oauth_token' ) ? of_get_option( 'social_twitter_oauth_token' ) : "16978818-X6wjOuO6WdsOtd4NPkuiG0AXtJ0FC8AGBBSOPB70a";
-    $oauth_access_token_secret = of_get_option( 'social_twitter_oauth_token_secret' ) ? of_get_option( 'social_twitter_oauth_token_secret' ) : "9s86WB7CzbQ7I4wGgnVFI8luzVe6l9UbOb0q8J4d4";
-    $consumer_key              = of_get_option( 'social_twitter_consumer_key' ) ? of_get_option( 'social_twitter_consumer_key' ) : "V4izD5vfx51znhPXaDGxdQ";
-    $consumer_secret           = of_get_option( 'social_twitter_consumer_secret' ) ? of_get_option( 'social_twitter_consumer_secret' ) : "i9ACofSBMGBGCGzen81mQ6Evr7z5I0otFZKiiavQiOY";
-    $username                  = of_get_option( 'social_twitter_username' ) ? of_get_option( 'social_twitter_username' ) : 'kiriaze';
-    $count                     = of_get_option( 'social_twitter_count' ) ? of_get_option( 'social_twitter_count' ) : 3;
-    $cache                     = of_get_option( 'social_twitter_cache' ) ? of_get_option( 'social_twitter_cache' ) : 15; // number of minutes, defaults to 15min
+    if ( function_exists( 'of_get_option' ) ) {
+
+        // Check theme options for values below
+        $oauth_access_token        = of_get_option( 'social_twitter_oauth_token' ) ? of_get_option( 'social_twitter_oauth_token' ) : "16978818-X6wjOuO6WdsOtd4NPkuiG0AXtJ0FC8AGBBSOPB70a";
+        $oauth_access_token_secret = of_get_option( 'social_twitter_oauth_token_secret' ) ? of_get_option( 'social_twitter_oauth_token_secret' ) : "9s86WB7CzbQ7I4wGgnVFI8luzVe6l9UbOb0q8J4d4";
+        $consumer_key              = of_get_option( 'social_twitter_consumer_key' ) ? of_get_option( 'social_twitter_consumer_key' ) : "V4izD5vfx51znhPXaDGxdQ";
+        $consumer_secret           = of_get_option( 'social_twitter_consumer_secret' ) ? of_get_option( 'social_twitter_consumer_secret' ) : "i9ACofSBMGBGCGzen81mQ6Evr7z5I0otFZKiiavQiOY";
+        $username                  = of_get_option( 'social_twitter_username' ) ? of_get_option( 'social_twitter_username' ) : 'kiriaze';
+        $count                     = of_get_option( 'social_twitter_count' ) ? of_get_option( 'social_twitter_count' ) : 3;
+        $cache                     = of_get_option( 'social_twitter_cache' ) ? of_get_option( 'social_twitter_cache' ) : 15; // number of minutes, defaults to 15min
+
+    } else {
+        
+        // Check theme options for values below
+        $oauth_access_token        = "16978818-X6wjOuO6WdsOtd4NPkuiG0AXtJ0FC8AGBBSOPB70a";
+        $oauth_access_token_secret = "9s86WB7CzbQ7I4wGgnVFI8luzVe6l9UbOb0q8J4d4";
+        $consumer_key              = "V4izD5vfx51znhPXaDGxdQ";
+        $consumer_secret           = "i9ACofSBMGBGCGzen81mQ6Evr7z5I0otFZKiiavQiOY";
+        $username                  = 'kiriaze';
+        $count                     = 3;
+        $cache                     = 15; // number of minutes, defaults to 15min
+
+    }
+
 
     define( 'oauth_access_token', $oauth_access_token);
     define( 'oauth_access_token_secret', $oauth_access_token_secret);
