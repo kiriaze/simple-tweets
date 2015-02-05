@@ -40,8 +40,10 @@ define( 'SIMPLE_TWEETS_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 define( 'SIMPLE_TWEETS_PLUGIN_PATH', plugin_dir_path(__FILE__) );
 define( 'SIMPLE_TWEETS_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
-//  Load options
-require_once( plugin_dir_path( __FILE__ ) . 'simple-tweets-options.php' );
+if ( function_exists( of_get_option() ) ) {
+    //  Load options
+    require_once( plugin_dir_path( __FILE__ ) . 'simple-tweets-options.php' );
+}
 
 //  Wrapped in after_setup_theme to utilize options
 add_action('after_setup_theme', 'simple_tweets_plugin_init', 12);
